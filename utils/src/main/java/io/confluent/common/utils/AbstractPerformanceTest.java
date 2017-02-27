@@ -107,6 +107,7 @@ public abstract class AbstractPerformanceTest {
       }
 
       PerformanceStats.Callback cb = stats.nextCompletion(sendStart);
+      System.out.println(String.format("doing iteration: i: %d", i));
       doIteration(cb);
     }
 

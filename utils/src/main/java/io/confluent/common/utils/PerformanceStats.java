@@ -64,6 +64,8 @@ public class PerformanceStats {
     this.windowTotalLatency += latency;
     this.windowMaxLatency = Math.max(windowMaxLatency, latency);
     if (iter % this.sampling == 0) {
+      if (index >= latencies.length)
+        System.out.println(String.format("Out of bounds: index: %d, iter %d", index, iter));
       this.latencies[index] = latency;
       this.index++;
     }
@@ -75,6 +77,7 @@ public class PerformanceStats {
   }
 
   public Callback nextCompletion(long start) {
+    System.out.println(String.format("nextCompletion: iteration: %d, start %d", iteration, start));
     Callback cb = new Callback(this.iteration, start);
     this.iteration++;
     return cb;
